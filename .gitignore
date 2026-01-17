@@ -43,3 +43,9 @@ playwright-report
 
 # Misc
 *.tsbuildinfo
+
+# AI and generated files
+.windsurf
+.windsurfrules
+generated/
+.history/
