@@ -20,4 +20,28 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    sourcemap: true,
+    chunkSizeWarningLimit: 500,
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react-dom') || id.includes('react/')) {
+              return 'vendor-react'
+            }
+            if (id.includes('react-router')) {
+              return 'vendor-router'
+            }
+            if (id.includes('zustand') || id.includes('@tanstack/react-query')) {
+              return 'vendor-state'
+            }
+            if (id.includes('@radix-ui')) {
+              return 'vendor-ui'
+            }
+          }
+        },
+      },
+    },
+  },
 })
